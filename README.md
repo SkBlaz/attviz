@@ -79,6 +79,7 @@ with open('generated_json_inputs/example_hatespeech_explanations.json', 'w') as 
 The server also comes with some pre-loaded examples, check these also!
 
 # How to host locally?
+If, due to privacy concerns, one wishes to host AttViz locally, follow the instructions next.
 Install Node.js. Then,
 ```
 npm install express
