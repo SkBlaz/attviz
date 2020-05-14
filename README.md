@@ -54,3 +54,12 @@ with open('generated_outputs/example_bbc_explanations.json', 'w') as fp:
 ```
 
 The server also comes with some pre-loaded examples, check these also!
+
+# How to host locally?
+It is as simple as:
+```
+node embViz.js
+
+```
+
+Change the ports at will.
