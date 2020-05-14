@@ -63,10 +63,14 @@ with open('generated_outputs/example_bbc_explanations.json', 'w') as fp:
 The server also comes with some pre-loaded examples, check these also!
 
 # How to host locally?
-It is as simple as:
+Install Node.js. Then,
+```
+npm install express
+```
+
+Next, it is as simple as:
 ```
 node embViz.js
-
 ```
 
-Change the ports at will.
+Go to the browser and type "localhost:3310". Change the ports at will.
