@@ -1,4 +1,4 @@
-# AttViz - Self attention made simple
+# _AttViz_ - Self attention made *simple*
 
 Neural language models are the state-of-the-art for most language-related tasks. One of the ways to explore their behavior, however, is via _visualization_. We present AttViz, a simple webserver suitable for *exploration* of instance-level attention, online.
 The server is live at [AttViz](http://attviz.ijs.si).
