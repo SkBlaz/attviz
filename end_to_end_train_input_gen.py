@@ -41,4 +41,4 @@ out_obj = get_json_from_weights(model,
 with open('generated_json_inputs/example_bbc_explanations.json', 'w') as fp:
     json.dump(out_obj, fp)
     
-That's it! Simply upload this json to the attvis.ijs.si and explore!
+## That's it! Simply upload this json to the attvis.ijs.si and explore!

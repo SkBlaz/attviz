@@ -16,6 +16,12 @@ Current preprint:
 ```
 ![AttViz image](images/exampleview1.png)
 
+# Requirements
+To follow the example below, please install the requirements from requirements.txt, by doing e.g.,
+```
+pip install -r requirements.txt
+```
+
 # How to prepare inputs?
 AttViz accepts attention space, encoded in the form of JSON objects, that can be constructed by using the provided scripts. An end-to-end example, which first trains a BERT-based model on a multiclass classification task, and next uses it to obtain attention data
 is given next.
