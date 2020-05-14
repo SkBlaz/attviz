@@ -14,7 +14,7 @@ Current preprint:
     primaryClass={cs.LG}
 }
 ```
-![Output example](images/exapmleview1.png "Example output")x
+![Image of Yaktocat](images/exapmleview1.png)
 
 # How to prepare inputs?
 AttViz accepts attention space, encoded in the form of JSON objects, that can be constructed by using the provided scripts. An end-to-end example, which first trains a BERT-based model on a multiclass classification task, and next uses it to obtain attention data
