@@ -13,7 +13,7 @@ function loadHomeContent() {
   var welcomeText = document.createElement("div");
   $(welcomeText).css("text-align","center");
   $(welcomeText).append("<div style='border-top: 2px solid #f3f3f3; border-bottom: 2px solid #f3f3f3; padding-top: 20px; padding-bottom: 20px;'>AttViz is an online toolkit for analysis of neural attention heads. It is fully compatible with the PyTorch-Transformers library.. <br>To prepare inputs which are simply uploaded to AttViz, please visit <a target='_blank' href='https://github.com/SkBlaz/embviz' style='font-size: 1.3rem;'><i class='fab fa-github'></i> GitHub</a>.</div>");
-  $(welcomeText).append("<div class='buttons'>To begin working with AttViz <a href='#' style='font-size: 1.3rem; margin-left:5px; margin-right: 5px;' onclick='load_example();'>try this example</a> or <a href='#' style='font-size: 1.3rem; margin-left:5px; margin-right: 5px;' onclick=\"$('#file-text-input').click();\">choose a file to load</a> .</div>")
+  $(welcomeText).append("<div class='buttons'>To begin working with AttViz try this <a href='#' style='font-size: 1.3rem; margin-left:5px; margin-right: 5px;' onclick='load_example(1);'>news classification example</a> or this <a href='#' style='font-size: 1.3rem; margin-left:5px; margin-right: 5px;' onclick='load_example(2);'>hatespeech example</a>, or <a href='#' style='font-size: 1.3rem; margin-left:5px; margin-right: 5px;' onclick=\"$('#file-text-input').click();\">choose a file to load</a> .</div>")
 
   let rowOne = document.createElement("div");
   $(rowOne).addClass("row");

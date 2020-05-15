@@ -489,8 +489,8 @@ function processTokenData(token) {
   }
 }
 
-function load_example() {
-  $.getJSON("example.json", function(json) {
+function load_example(argument_fname) {
+  $.getJSON("example"+argument_fname+".json", function(json) {
     load_json(json); // this will show the info it in firebug console
   });
 }
