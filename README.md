@@ -93,3 +93,7 @@ node embViz.js
 ```
 
 Go to the browser and type "localhost:3310". Change the ports at will.
+
+# Disclaimer
+
+The tool is under active development, changes are at least to some extent expected.
