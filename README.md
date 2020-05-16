@@ -94,4 +94,4 @@ Go to the browser and type "localhost:3310". Change the ports at will.
 
 # Disclaimer
 
-The tool is under active development, changes are at least to some extent expected.
+The tool is under active development, changes are at least to some extent expected. Use at own risk.
