@@ -43,13 +43,13 @@ def get_bert_base(train_sequences, dev_sequences, train_targets, dev_targets, ti
     
     # Create a ClassificationModel
     if model == "bert-base":
-        model = ClassificationModel('bert', 'bert-base-cased', num_labels=len(set(total_labels_training)), args={'reprocess_input_data': True, 'overwrite_output_dir': True}, use_cuda = cuda)
+        model = ClassificationModel('bert', 'bert-base-cased', num_labels=len(set(total_labels_training)), args={'reprocess_input_data': True, 'overwrite_output_dir': True,"output_hidden_states":True}, use_cuda = cuda)
         
     elif model == "roberta-base":
-        model = ClassificationModel('roberta', 'roberta-base', num_labels=len(set(total_labels_training)), args={'reprocess_input_data': True, 'overwrite_output_dir': True}, use_cuda = cuda)
+        model = ClassificationModel('roberta', 'roberta-base', num_labels=len(set(total_labels_training)), args={'output_hidden_states':True,'reprocess_input_data': True, 'overwrite_output_dir': True}, use_cuda = cuda)
 
-    model.args['num_train_epochs'] = 3
-    model.args['max_sequence_length'] = 512
+    model.args['num_train_epochs'] = 1
+    model.args['max_sequence_length'] = 256
     model.args['save_eval_checkpoints'] = False
     model.args['save_model_every_epoch'] = False
     model.args['output_dir'] = weights_dir

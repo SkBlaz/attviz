@@ -126,10 +126,12 @@ def compute_metrics(task_name, preds, labels):
     return acc_and_f1(preds, labels)
     
 data_processors = {
-    "bbc":genericProcessor
+    "bbc":genericProcessor,
+    "insults":genericProcessor,
+    "hatespeech":genericProcessor
 }
 
-task_names = ["bbc"]
+task_names = ["bbc","insults","hatespeech"]
 
 folder_names = task_names
 
