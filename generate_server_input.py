@@ -89,7 +89,7 @@ def get_json_from_weights(model,
                 sats = [str(x) for x in self_attentions.tolist()[0:len(tokens)]]
                 overall_self_attentions.append((enx,sats))
             overall_attentions = [str(x) for x in np.mean(overall_diags, axis= 0).tolist()]
-            targets = [str(x) for x in acts]
+            # targets = [str(x) for x in acts]
             temp_obj = {}
             temp_obj['text'] = text
             temp_obj['sets'] = [{}]
