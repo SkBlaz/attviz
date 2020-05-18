@@ -76,7 +76,7 @@ with open('generated_json_inputs/example_hatespeech_explanations.json', 'w') as 
 
 ```
 
-The server also comes with some pre-loaded examples, check these also!
+The server also comes with some pre-loaded examples (generated_json_inputs), check these also (upload to server and explore).
 
 # How to host locally?
 If, due to privacy concerns, one wishes to host AttViz locally, follow the instructions next.
@@ -95,3 +95,6 @@ Go to the browser and type "localhost:3310". Change the ports at will.
 # Disclaimer
 
 The tool is under active development, changes are at least to some extent expected. Use at own risk.
+
+# Contributing
+Please, open a pull request, an issue or write to us if you have some interesting use cases of this methodology!
