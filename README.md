@@ -98,3 +98,6 @@ The tool is under active development, changes are at least to some extent expect
 
 # Contributing
 Please, open a pull request, an issue or write to us if you have some interesting use cases of this methodology!
+
+# About
+The code was developed with equal contributions from Nika Eržen And Blaž Škrlj
