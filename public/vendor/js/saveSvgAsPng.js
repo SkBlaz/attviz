@@ -190,7 +190,8 @@
       selectorRemap,
       modifyStyle,
       modifyCss,
-      fonts
+      fonts,
+      excludeUnusedCss
     } = options || {};
     const generateCss = modifyCss || ((selector, properties) => {
       const sel = selectorRemap ? selectorRemap(selector) : selector;
@@ -208,7 +209,9 @@
           else if (detectFonts && rule.cssText.match(/^@font-face/)) {
             const font = detectCssFont(rule, href);
             if (font) fontList.push(font);
-          } else css.push(rule.cssText);
+          } else if (!excludeUnusedCss) {
+            css.push(rule.cssText);
+          }
         }
       });
     });
@@ -231,6 +234,7 @@
       height: h,
       scale = 1,
       responsive = false,
+      excludeCss = false,
     } = options || {};
 
     return inlineImages(el).then(() => {
@@ -270,22 +274,30 @@
         foreignObject.setAttributeNS(xmlNs, 'xmlns', foreignObject.tagName === 'svg' ? svgNs : xhtmlNs);
       });
 
-      return inlineCss(el, options).then(css => {
-        const style = document.createElement('style');
-        style.setAttribute('type', 'text/css');
-        style.innerHTML = `<![CDATA[\n${css}\n]]>`;
-
-        const defs = document.createElement('defs');
-        defs.appendChild(style);
-        clone.insertBefore(defs, clone.firstChild);
-
+      if (excludeCss) {
         const outer = document.createElement('div');
         outer.appendChild(clone);
-        const src = outer.innerHTML.replace(/NS\d+:href/gi, 'xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href');
-
+        const src = outer.innerHTML;
         if (typeof done === 'function') done(src, width, height);
         else return {src, width, height};
-      });
+      } else {
+        return inlineCss(el, options).then(css => {
+          const style = document.createElement('style');
+          style.setAttribute('type', 'text/css');
+          style.innerHTML = `<![CDATA[\n${css}\n]]>`;
+
+          const defs = document.createElement('defs');
+          defs.appendChild(style);
+          clone.insertBefore(defs, clone.firstChild);
+
+          const outer = document.createElement('div');
+          outer.appendChild(clone);
+          const src = outer.innerHTML.replace(/NS\d+:href/gi, 'xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href');
+
+          if (typeof done === 'function') done(src, width, height);
+          else return {src, width, height};
+        });
+      }
     });
   };
 

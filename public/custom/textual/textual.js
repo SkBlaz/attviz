@@ -386,6 +386,7 @@ function addNewToken(name,token) {
   }
 
   for (let att_vector_id in globals.variables.data.attentionVectors[id].vectors) {
+    globals.variables.settings.hilight = undefined;
     processAttentionVectors(tbody,att_vector_id,id,token);
   }
 
@@ -824,7 +825,7 @@ function processAttentionVectors(tbody,v,id,token) {
   let json_id = get_json_id({token_id: id, vector_id: v});
 
   let hilighted = globals.variables.settings.hilight;
-  let isHilighted = hilighted.block == id && hilighted.vectors == v;
+  let isHilighted = hilighted && hilighted.block == id && hilighted.vectors == v;
 
   addAttVectorsToList(tbody, {
     name: {
