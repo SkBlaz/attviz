@@ -81,10 +81,9 @@ def get_json_from_weights(model,
                     attention_matrix = attention_matrix.reshape(shx,shx)
                     self_attentions = np.diagonal(attention_matrix).flatten()
                     overall_diags.append(self_attentions)
-                    #print("Stored an att vector {}.".format(enx))
                     
                 except Exception as es:
-                    print("Index  {} out of range.".format(enx))
+                    print("Index  {} out of range.".format(enx))                    
 
                 sats = [str(x) for x in self_attentions.tolist()[0:len(tokens)]]
                 overall_self_attentions.append((enx,sats))
