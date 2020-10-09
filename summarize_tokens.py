@@ -12,11 +12,14 @@ import matplotlib.pyplot as plt
 import argparse
 sns.set_palette("Set2")
 from wordcloud import WordCloud
+import tqdm
 import matplotlib.pyplot as plt
 from matplotlib import rc, font_manager
 import glob
+from scipy import integrate
+from fuji_rankings import *
 
-font_size = 8
+font_size = 11
 font_properties = {'family': 'serif', 'serif': ['Computer Modern Roman'],
                    'weight': 'normal', 'size': font_size}
 
@@ -32,7 +35,7 @@ sns.set_style("white")
 
 
 # input_json = args.input_json
-top_k = 35
+top_k = 25
 
 # all_inputs = ["generated_json_inputs/positive.json",
 #               "generated_json_inputs/negative.json",
@@ -89,26 +92,44 @@ for input_json, fname in zip(all_inputs, names):
     head_df = pd.DataFrame(head_instances)
     head_df.columns = ['token','attention','head']
 
-#     fig = plt.figure(figsize = (6,7))
-#     fig.subplots_adjust(hspace=0.2, wspace=0.2)
-#     for i in range(1, 11):
-#         print(f"wc, head {i} {fname}")
-#         ax = fig.add_subplot(4, 3, i)
-#         shead_df = head_df[head_df['head'] == i]
-#         tokenspace = shead_df['token'].values
-#         attention_space = shead_df['attention'].values
-#         vx = np.argsort(attention_space)[::-1][0:int(len(attention_space)/3)]
-#         tokenspace = tokenspace[vx]
-#         if len(tokenspace) > 0:
-#             text = " ".join(tokenspace)
-#             wordcloud = WordCloud(width = 3000, height = 2000, random_state=1, background_color='white', colormap='coolwarm_r', collocations=False).generate(text)
-#             plt.title("Head {}".format(i))
-#             plt.imshow(wordcloud) 
-#             plt.axis("off")
-#     plt.tight_layout()
-#     plt.savefig("figures/multihead_{}.png".format(fname), dpi = 300)
-# #    plt.show()
-#     plt.clf()
+    fig = plt.figure(figsize = (6,7))
+    fig.subplots_adjust(hspace=0.2, wspace=0.2)
+
+    attention_distributions = {}
+    for i in range(1, 11):
+        print(f"wc, head {i} {fname}")
+        ax = fig.add_subplot(4, 3, i)
+        shead_df = head_df[head_df['head'] == i]
+        tokenspace = shead_df['token'].values
+        attention_space = shead_df['attention'].values
+        attention_distributions[i] = np.abs(attention_space)
+        # vx = np.argsort(attention_space)[::-1][0:int(len(attention_space)/3)]
+        # tokenspace = tokenspace[vx]
+        # if len(tokenspace) > 0:
+        #     text = " ".join(tokenspace)
+        #     wordcloud = WordCloud(width = 3000, height = 2000, random_state=1, background_color='white', colormap='coolwarm_r', collocations=False).generate(text)
+        #     plt.title("Head {}".format(i))
+        #     plt.imshow(wordcloud) 
+        #     plt.axis("off")
+    # plt.tight_layout()
+    # plt.savefig("figures/multihead_{}.png".format(fname), dpi = 300)
+    plt.clf()
+
+    # heatmap_points = []
+    # for k0,v0 in tqdm.tqdm(attention_distributions.items()):
+    #     for k1,v1 in attention_distributions.items():
+    #         if k0 != k1:
+    #             similarity = compute_similarity(v0, v1, "fuzzy_jaccard")
+    #             heatmap_points.append([k0,k1,similarity[1]])
+    # heatmap_df = pd.DataFrame(heatmap_points)
+    # heatmap_df.columns = ['head x','head y','AUFuji']
+    # with sns.axes_style("white"):
+    #     heatmap_df = heatmap_df.pivot("head x", "head y", "AUFuji")
+    #     mask = np.zeros_like(heatmap_df.values, dtype=np.bool)
+    #     mask[np.triu_indices_from(mask)] = True
+    #     sns.heatmap(heatmap_df,linewidths=.4, cmap = "coolwarm", mask = mask, cbar_kws={'label': 'AUFuji'})
+    # plt.tight_layout()
+    # plt.savefig("figures/heatmap_{}.png".format(fname), dpi = 300)
         
 ## plot
 first_df = pd.DataFrame(first_dataframe)
