@@ -24,6 +24,7 @@ def get_json_from_weights(model,
                           label_names = ['business','entertainment','politics','sport'],
                           segment_delimiter = "|||",
                           verbose = True,
+                          omit_first_last = False,
                           subsample = True):
 
     """
